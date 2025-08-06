@@ -1,186 +1,292 @@
-# User Management System
+# 🚀 Spring Boot Management System
 
-A full-stack Spring Boot application with a modern web UI for managing users.
+A comprehensive, modern management system built with **Spring Boot** and featuring a professional web interface. This full-stack application provides user management, expense tracking, and real-time analytics with a beautiful, responsive UI.
 
-## Features
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.0-brightgreen)
+![Java](https://img.shields.io/badge/Java-17+-orange)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-### Backend (Spring Boot)
-- **Complete CRUD Operations** for user management
-- **Expense Management System** with categories and tracking
-- **JWT-based Authentication & Authorization**
-- **Role-based Access Control** (USER, ADMIN)
-- **RESTful API** with proper HTTP status codes
-- **Input Validation** with detailed error messages
-- **H2 In-Memory Database** with JPA/Hibernate
-- **Global Exception Handling**
-- **Sample Data Initialization**
+## ✨ Features
 
-### Frontend (Web UI)
-- **Modern Responsive Design** using Bootstrap 5
-- **Authentication UI** with login/register pages
-- **JWT Token Management** with automatic refresh
-- **Role-based UI Elements** (admin-only features)
-- **Real-time User Management** with AJAX calls
-- **Expense Management Interface** with dashboard and tracking
-- **Form Validation** with visual feedback
-- **Search & Filter Functionality** by name, category, date
-- **Modal Dialogs** for add/edit/delete operations
-- **Success/Error Notifications**
-- **Mobile-Friendly Interface**
+### 🎯 **Backend Capabilities**
+- **🔐 JWT Authentication** - Secure token-based authentication system
+- **👥 User Management** - Complete CRUD operations with role-based access
+- **💰 Expense Tracking** - Categorized expense management with payment methods
+- **📊 Real-time Analytics** - Dashboard with statistics and insights
+- **🛡️ Security** - Spring Security with password encryption
+- **🗄️ Database Integration** - MySQL with JPA/Hibernate
+- **🔄 RESTful APIs** - Complete REST API with proper HTTP status codes
+- **⚠️ Error Handling** - Global exception handling with meaningful messages
 
-## Quick Start
+### 🎨 **Frontend Experience**
+- **📱 Responsive Design** - Mobile-first Bootstrap 5.3 implementation
+- **🎭 Modern UI** - Professional interface with smooth animations
+- **🔐 Authentication Flow** - Login/Register with form validation
+- **📈 Interactive Dashboard** - Real-time statistics and recent activity
+- **👤 User Management** - Search, filter, add, edit, delete users
+- **💸 Expense Management** - Add expenses with categories and payment methods
+- **🔧 Modal Management** - Fixed overlay issues with proper cleanup
+- **🌙 Professional Styling** - Custom CSS with modern design patterns
 
-1. **Run the application:**
-   ```bash
-   mvn spring-boot:run
-   ```
+## 🛠️ Technology Stack
 
-2. **Access the UI:**
-   - Open your browser and go to: `http://localhost:8080`
-   - You'll be redirected to the login page
+| Category | Technologies |
+|----------|-------------|
+| **Backend** | Spring Boot 3.2.0, Spring Security, Spring Data JPA |
+| **Database** | MySQL 8.0 with automated schema creation |
+| **Frontend** | HTML5, CSS3, JavaScript ES6+, Bootstrap 5.3 |
+| **Security** | JWT tokens, BCrypt password hashing |
+| **Build** | Maven 3.6+, Java 17+ |
+| **Styling** | Font Awesome 6.4, Google Fonts (Inter) |
 
-3. **Login with demo accounts:**
-   - **Admin:** username=`admin`, password=`admin123`
-   - **User:** username=`user`, password=`user123`
+## 🚀 Quick Start
 
-4. **Access the API:**
-   - Authentication API: `http://localhost:8080/api/auth`
-   - User Management API: `http://localhost:8080/api/users` (Admin only)
-   - H2 Console: `http://localhost:8080/h2-console`
+### 📋 Prerequisites
+- ☕ **Java 17+** - Required for Spring Boot 3.x
+- 🗄️ **MySQL 8.0+** - Database server
+- 🔧 **Maven 3.6+** - Build tool
 
-## API Endpoints
+### 🔧 Installation
 
-### Authentication Endpoints (Public)
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register new account |
-| POST | `/api/auth/login` | Login and get JWT token |
-| GET | `/api/auth/me` | Get current user info |
-| POST | `/api/auth/logout` | Logout (client-side) |
-
-### User Management Endpoints (Admin Only)
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/users` | Get all users |
-| POST | `/api/users` | Create new user |
-| GET | `/api/users/{id}` | Get user by ID |
-| PUT | `/api/users/{id}` | Update user |
-| PATCH | `/api/users/{id}` | Partial update user |
-| DELETE | `/api/users/{id}` | Delete user |
-| GET | `/api/users/search?name={name}` | Search users by name |
-| GET | `/api/users/email/{email}` | Get user by email |
-| GET | `/api/users/count` | Get total user count |
-| GET | `/api/users/{id}/exists` | Check if user exists |
-
-## UI Features
-
-### User List
-- View all users in a responsive table
-- Real-time user count display
-- Search users by first name or last name
-- Edit and delete actions for each user
-
-### Add/Edit User
-- Modal form with validation
-- Required fields: First Name, Last Name, Email
-- Optional field: Phone Number
-- Real-time validation feedback
-- Duplicate email detection
-
-### Search
-- Live search as you type
-- Searches both first name and last name
-- Clear search functionality
-
-### Notifications
-- Success messages for operations
-- Error messages with details
-- Auto-dismissing alerts
-
-## Technology Stack
-
-### Backend
-- **Spring Boot 3.2.0**
-- **Spring Security 6** with JWT authentication
-- **Spring Data JPA**
-- **H2 Database**
-- **Spring Validation**
-- **JJWT 0.11.5** for JWT token handling
-- **BCrypt** for password hashing
-- **Maven**
-
-### Frontend
-- **HTML5**
-- **CSS3** with custom styling
-- **JavaScript (ES6+)**
-- **Bootstrap 5.3.0**
-- **Font Awesome 6.4.0**
-
-## Database
-
-The application uses H2 in-memory database with the following configuration:
-- **URL:** `jdbc:h2:mem:testdb`
-- **Username:** `sa`
-- **Password:** `password`
-- **Console:** Available at `/h2-console`
-
-## Sample Data
-
-### Authentication Users
-The application automatically creates default authentication accounts:
-- **Admin Account:** username=`admin`, password=`admin123`, role=`ADMIN`
-- **User Account:** username=`user`, password=`user123`, role=`USER`
-
-### Sample Users (for management)
-The application also initializes with 5 sample users for demonstration:
-1. John Doe (john.doe@example.com)
-2. Jane Smith (jane.smith@example.com)
-3. Bob Johnson (bob.johnson@example.com)
-4. Alice Brown (alice.brown@example.com)
-5. Charlie Wilson (charlie.wilson@example.com)
-
-## Development
-
-### Project Structure
-```
-src/
-├── main/
-│   ├── java/com/example/testingapp/
-│   │   ├── controller/     # REST controllers
-│   │   ├── service/        # Business logic
-│   │   ├── repository/     # Data access
-│   │   ├── entity/         # JPA entities
-│   │   ├── dto/            # Data transfer objects
-│   │   ├── config/         # Configuration classes
-│   │   └── exception/      # Exception handlers
-│   └── resources/
-│       ├── static/         # Web UI files
-│       │   ├── css/        # Stylesheets
-│       │   ├── js/         # JavaScript files
-│       │   └── index.html  # Main UI page
-│       └── application.properties
-└── test/                   # Unit tests
-```
-
-### Running Tests
+**1. Clone & Navigate**
 ```bash
-mvn test
+git clone https://github.com/satheeaseelan/testingapp.git
+cd testingapp
 ```
 
-### Building for Production
+**2. Database Setup**
+```sql
+-- Create database and user
+CREATE DATABASE testingapp_db;
+CREATE USER 'testingapp_user'@'localhost' IDENTIFIED BY 'testingapp_password';
+GRANT ALL PRIVILEGES ON testingapp_db.* TO 'testingapp_user'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+**3. Configure Application**
+Update `src/main/resources/application.properties`:
+```properties
+# Database Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/testingapp_db
+spring.datasource.username=testingapp_user
+spring.datasource.password=testingapp_password
+
+# JPA Configuration
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+# JWT Configuration
+jwt.secret=mySecretKey
+jwt.expiration=86400000
+```
+
+**4. Run Application**
 ```bash
+# Start the application
+mvn spring-boot:run
+
+# Or build and run JAR
 mvn clean package
 java -jar target/testingapp-0.0.1-SNAPSHOT.jar
 ```
 
-## Browser Support
+**5. Access Application**
+- 🌐 **URL**: `http://localhost:8080`
+- 🔑 **Admin**: `admin` / `admin123`
+- 👤 **User**: `user` / `user123`
 
-The UI is compatible with:
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
+## 📱 Application Pages
 
-## License
+| Page | URL | Description |
+|------|-----|-------------|
+| 🏠 **Landing** | `/` | Welcome page with features overview |
+| 🔐 **Login** | `/login.html` | Authentication with demo credentials |
+| 📝 **Register** | `/register.html` | User registration form |
+| 📊 **Dashboard** | `/dashboard.html` | Statistics and recent activity |
+| 👥 **Users** | `/users.html` | User management interface |
+| 💰 **Expenses** | `/expenses.html` | Expense tracking and management |
+| 🔧 **Debug** | `/debug.html` | Authentication debugging tool |
 
-This project is for demonstration purposes.
+## 🔌 API Endpoints
+
+### 🔐 **Authentication**
+```http
+POST /api/auth/login      # User login
+POST /api/auth/register   # User registration
+```
+
+### 👥 **User Management**
+```http
+GET    /api/users         # Get all users
+POST   /api/users         # Create user
+PUT    /api/users/{id}    # Update user
+DELETE /api/users/{id}    # Delete user
+```
+
+### 💰 **Expense Management**
+```http
+GET    /api/expenses      # Get all expenses
+POST   /api/expenses      # Create expense
+PUT    /api/expenses/{id} # Update expense
+DELETE /api/expenses/{id} # Delete expense
+```
+
+### 📂 **Categories**
+```http
+GET /api/expense-categories # Get all categories
+```
+
+## 🎯 Demo Credentials
+
+| Role | Username | Password | Access Level |
+|------|----------|----------|--------------|
+| 👑 **Admin** | `admin` | `admin123` | Full system access |
+| 👤 **User** | `user` | `user123` | Standard user access |
+## 📁 Project Structure
+
+```
+📦 testingapp/
+├── 📂 src/main/java/com/example/testingapp/
+│   ├── 📂 config/          # 🔧 Configuration classes
+│   │   ├── DataInitializer.java    # Sample data loader
+│   │   ├── SecurityConfig.java     # Security configuration
+│   │   └── WebConfig.java          # Web configuration
+│   ├── 📂 controller/      # 🎮 REST Controllers
+│   │   ├── AuthController.java     # Authentication endpoints
+│   │   ├── UserController.java     # User management
+│   │   ├── ExpenseController.java  # Expense management
+│   │   └── ExpenseCategoryController.java
+│   ├── 📂 dto/            # 📋 Data Transfer Objects
+│   ├── 📂 entity/         # 🗄️ JPA Entities
+│   ├── 📂 repository/     # 🔍 Data Repositories
+│   ├── 📂 security/       # 🛡️ Security Components
+│   │   ├── JwtUtil.java           # JWT token utility
+│   │   └── JwtAuthenticationFilter.java
+│   └── 📂 service/        # 💼 Business Logic
+├── 📂 src/main/resources/
+│   ├── 📂 static/         # 🌐 Frontend Files
+│   │   ├── 📂 css/        # 🎨 Stylesheets
+│   │   ├── 📂 js/         # ⚡ JavaScript
+│   │   └── 📄 *.html      # 📄 HTML Pages
+│   └── application.properties     # ⚙️ Configuration
+└── 📂 src/test/           # 🧪 Unit Tests
+```
+
+## 🎨 UI Features
+
+### 🏠 **Landing Page**
+- ✨ Hero section with feature highlights
+- 📋 Feature cards with icons and descriptions
+- 🔑 Demo credentials display
+- 📱 Fully responsive design
+
+### 🔐 **Authentication**
+- 🎭 Split-screen modern design
+- ✅ Form validation with real-time feedback
+- 👁️ Password visibility toggle
+- 🔄 Loading states and error handling
+
+### 📊 **Dashboard**
+- 📈 Real-time statistics cards
+- 📋 Recent users and expenses lists
+- 🔄 Refresh and export functionality
+- 📱 Mobile-optimized layout
+
+### 👥 **User Management**
+- 🔍 Real-time search and filtering
+- ➕ Add/Edit users with modal forms
+- 🗑️ Delete confirmation dialogs
+- 📊 User statistics display
+
+### 💰 **Expense Management**
+- 🏷️ Category-based organization
+- 💳 Payment method tracking
+- 📅 Date filtering options
+- 🔄 Recurring expense support
+- 🧾 Receipt URL storage
+
+## 🔧 Development
+
+### 🧪 **Running Tests**
+```bash
+# Run all tests
+mvn test
+
+# Run specific test class
+mvn test -Dtest=UserServiceTest
+
+# Run with coverage
+mvn test jacoco:report
+```
+
+### 🏗️ **Building for Production**
+```bash
+# Clean and package
+mvn clean package
+
+# Run production JAR
+java -jar target/testingapp-0.0.1-SNAPSHOT.jar
+
+# With custom profile
+java -jar target/testingapp-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
+```
+
+### 🗄️ **Database Management**
+- **Auto Schema Creation**: Enabled in development
+- **Sample Data Loading**: Automatic on startup
+- **Migration Support**: Ready for Flyway integration
+
+## 🎯 Key Features Implemented
+
+### ✅ **Completed Features**
+- ✅ **JWT Authentication** - Secure login/logout system
+- ✅ **User CRUD Operations** - Complete user management
+- ✅ **Expense Tracking** - Full expense management system
+- ✅ **Responsive UI** - Mobile-first design
+- ✅ **Modal Management** - Fixed overlay cleanup issues
+- ✅ **Real-time Dashboard** - Statistics and analytics
+- ✅ **Search & Filtering** - Advanced data filtering
+- ✅ **Form Validation** - Client and server-side validation
+- ✅ **Error Handling** - Comprehensive error management
+- ✅ **Sample Data** - Pre-loaded demo data
+
+### 🔄 **Recent Updates**
+- 🔧 **Modal Fix** - Resolved overlay cleanup issues
+- 🎨 **UI Polish** - Enhanced styling and animations
+- 🔐 **Security Enhancement** - Improved JWT handling
+- 📱 **Mobile Optimization** - Better responsive design
+- 🐛 **Bug Fixes** - Various UI and backend improvements
+
+## 🤝 Contributing
+
+1. 🍴 **Fork** the repository
+2. 🌿 **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. ✨ **Make** your changes
+4. 🧪 **Add** tests for new functionality
+5. 💾 **Commit** your changes (`git commit -m 'Add amazing feature'`)
+6. 📤 **Push** to the branch (`git push origin feature/amazing-feature`)
+7. 🔄 **Open** a Pull Request
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- 📧 **Email**: satheesh.manoharan@gmail.com
+- 🐛 **Issues**: [GitHub Issues](https://github.com/satheeaseelan/testingapp/issues)
+- 📖 **Documentation**: Check the code comments and this README
+
+## 🙏 Acknowledgments
+
+- 🍃 **Spring Boot Team** - For the amazing framework
+- 🎨 **Bootstrap Team** - For the responsive CSS framework
+- 🔧 **Font Awesome** - For the beautiful icons
+- 🗄️ **MySQL Team** - For the reliable database system
+
+---
+
+**⭐ If you find this project helpful, please give it a star!**
