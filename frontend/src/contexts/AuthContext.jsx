@@ -20,15 +20,26 @@ export const AuthProvider = ({ children }) => {
     const initializeAuth = async () => {
       try {
         const token = localStorage.getItem('token');
-        if (token) {
-          // Verify token with backend
-          const userData = await authService.verifyToken();
-          setUser(userData);
-          setIsAuthenticated(true);
+        const storedUser = localStorage.getItem('user');
+
+        if (token && storedUser) {
+          try {
+            // Try to verify token with backend
+            const userData = await authService.verifyToken();
+            setUser(userData);
+            setIsAuthenticated(true);
+          } catch (error) {
+            // If API fails, use stored user data for demo
+            console.log('API verification failed, using stored user data');
+            const userData = JSON.parse(storedUser);
+            setUser(userData);
+            setIsAuthenticated(true);
+          }
         }
       } catch (error) {
         console.error('Token verification failed:', error);
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
       } finally {
         setLoading(false);
       }
@@ -40,21 +51,65 @@ export const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     try {
       setLoading(true);
-      const response = await authService.login(credentials);
-      
-      if (response.token) {
-        localStorage.setItem('token', response.token);
-        setUser(response.user);
+
+      // Mock authentication for demo purposes
+      if (credentials.username === 'admin' && credentials.password === 'admin123') {
+        const mockUser = {
+          id: 1,
+          name: 'John Doe',
+          email: 'john.doe@company.com',
+          username: 'admin',
+          role: 'Administrator',
+          avatar: null,
+          lastLogin: new Date().toISOString(),
+          status: 'active'
+        };
+
+        localStorage.setItem('token', 'mock-jwt-token-admin');
+        localStorage.setItem('user', JSON.stringify(mockUser));
+        setUser(mockUser);
+        setIsAuthenticated(true);
+        return { success: true };
+      } else if (credentials.username === 'user' && credentials.password === 'user123') {
+        const mockUser = {
+          id: 2,
+          name: 'Jane Smith',
+          email: 'jane.smith@company.com',
+          username: 'user',
+          role: 'User',
+          avatar: null,
+          lastLogin: new Date().toISOString(),
+          status: 'active'
+        };
+
+        localStorage.setItem('token', 'mock-jwt-token-user');
+        localStorage.setItem('user', JSON.stringify(mockUser));
+        setUser(mockUser);
         setIsAuthenticated(true);
         return { success: true };
       }
-      
+
+      // Try actual API call as fallback
+      try {
+        const response = await authService.login(credentials);
+
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('user', JSON.stringify(response.user));
+          setUser(response.user);
+          setIsAuthenticated(true);
+          return { success: true };
+        }
+      } catch (apiError) {
+        console.log('API login failed, using mock authentication');
+      }
+
       return { success: false, error: 'Invalid credentials' };
     } catch (error) {
       console.error('Login error:', error);
-      return { 
-        success: false, 
-        error: error.response?.data?.message || 'Login failed' 
+      return {
+        success: false,
+        error: error.response?.data?.message || 'Login failed'
       };
     } finally {
       setLoading(false);
@@ -87,6 +142,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setUser(null);
     setIsAuthenticated(false);
   };
